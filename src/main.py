@@ -13,6 +13,7 @@ app = FastAPI(
 )
 
 app.include_router(token.router, prefix=settings.API_PREFIX)
+app.include_router(user.router, prefix=settings.API_PREFIX)
 
 app.add_middleware(
     CORSMiddleware,

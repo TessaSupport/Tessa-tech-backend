@@ -9,6 +9,6 @@ router = APIRouter(
     tags=["users"]
 )
 
-@router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/create", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def create_user(request: UserCreate, db: Session = Depends(get_db)):
     return create_DBuser(db, request)
