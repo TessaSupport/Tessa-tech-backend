@@ -2,8 +2,9 @@ from enum import Enum
 
 class TicketStatus(str, Enum):
     OPEN = "open"
-    PENDING = "pending"
+    ONGOING = "pending"
     RESOLVED = "resolved"
+    CLOSED = "closed"
 
 class SenderType(str, Enum):
     USER = "user"

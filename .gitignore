@@ -8,8 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
-terra-env/
-.env
+.env.prod
+tessa-env
 
 #pytest cache
 .cache

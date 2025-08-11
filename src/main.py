@@ -8,12 +8,14 @@ from admin import admin_route
 from routers import user
 
 app = FastAPI(
-    title="Terra Customer Support AI Agent API",
-    description="This is a Fastapi backend for the Terra application. All Rights Reserved.",
+    title="Tessa Customer Support AI Agent API",
+    description="This is a Fastapi backend for the Tessa application. All Rights Reserved.",
+    debug=settings.DEBUG
 )
 
-app.include_router(token.router, prefix=settings.API_PREFIX)
+app.include_router(token.router)
 app.include_router(user.router, prefix=settings.API_PREFIX)
+app.include_router(admin_route.router, prefix=settings.API_PREFIX)
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,7 +28,7 @@ app.add_middleware(
 @app.get('/')
 async def health_check():
     return {
-        'message': 'Welcome to the Terra Customer Support AI Agent API',
+        'message': 'Welcome to the Tessa Customer Support AI Agent API',
         'status': 'healthy, API is running',
         'docs': '/docs',
         'redoc': '/redoc'
@@ -35,4 +37,9 @@ async def health_check():
 create_tables()
 
 if __name__ == "__main__":
-    uvicorn.run('main:app', host='0.0.0.0', port=8000, reload=True)
+    uvicorn.run(
+        'main:app', 
+        host='0.0.0.0', 
+        port=8000, 
+        reload=settings.ENV == "dev"
+    )

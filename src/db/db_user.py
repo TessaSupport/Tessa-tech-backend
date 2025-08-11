@@ -15,3 +15,15 @@ def create_DBuser(db: Session, request: UserCreate):
     db.commit()
     db.refresh(new_user)
     return new_user
+
+def get_DBusers(db: Session):
+    users = db.query(User).all()
+    if users == []:
+        raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail='No users found')
+    return users
+
+def get_DBuser_by_username(db: Session, username: str):
+    user = db.query(User).filter(User.username == username).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User with username {username} not found")
+    return user
