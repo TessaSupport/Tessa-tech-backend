@@ -15,15 +15,17 @@ def get_token(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depe
     user = db.query(User).filter(User.username == request.username).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incorrect credentials")
-    if not Hash.verify_password(user.password, request.password):
+    
+    # FIXED: Correct parameter order - plain_password first, then hashed_password
+    if not Hash.verify_password(request.password, user.password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incorrect credentials")
-    access_token = Oauth2.create_access_token(
-        data={
-            "sub": user.username,
-            "is_admin": True,
-            "scope": "admin"
-        }
-    )
+    
+    token_data = {
+        "sub": user.username,
+        "role": user.role,
+        "parent_company": user.parent_company
+    }
+    access_token = Oauth2.create_access_token(token_data)
 
     return {
         "access_token": access_token, 
@@ -32,5 +34,7 @@ def get_token(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depe
             "id": user.id,
             "username": user.username,
             "email": user.email,
+            "role": user.role,
+            "parent_company": user.parent_company   
         }
     }

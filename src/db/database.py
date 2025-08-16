@@ -5,10 +5,21 @@ from utils.config import settings
 
 DATABASE_URL = settings.DATABASE_URL
 
-engine = create_engine(
-    DATABASE_URL, 
-    connect_args={"check_same_thread": False}
-)
+# Make database configuration environment-aware
+if "sqlite" in DATABASE_URL.lower():
+    # SQLite configuration
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False}
+    )
+else:
+    # PostgreSQL configuration
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"sslmode": "require"},
+        pool_size=10,
+        max_overflow=20
+    )
 
 SessionLocal = sessionmaker(
     autocommit=False, 

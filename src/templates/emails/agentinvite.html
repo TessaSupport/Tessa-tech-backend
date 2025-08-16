@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify Email Address</title>
+  <link rel="stylesheet" href="https://geists.vercel.app/font.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Geist', 'Segoe UI', Arial, sans-serif;
+    }
+    .outer-card {
+      max-width: 598px;
+      margin: 16px auto;
+      background: #F0F4FF;
+      border-radius: 10px;
+      padding: 0 10px 24px 10px;
+      text-align: center;
+    }
+    .logo {
+      padding-top: 32px;
+      margin-top: 32px;
+      margin-bottom: 32px;
+    }
+    .logo-text {
+      font-size: 2rem;
+      color: #5b78fd;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+    .white-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(91,120,253,0.04);
+      padding: 32px 24px 24px 24px;
+      margin: 0 auto 0 auto;
+      text-align: left;
+      max-width: 550px;
+      height: 499px;
+    }
+    .card-title {
+      font-size: 20px;
+      line-height: 100%;
+      font-weight: 600;
+      color: #192040;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    .card-desc {
+      color: #192040;
+      font-size: 14px;
+      margin-bottom: 30px;
+      line-height: 150%;
+      width: 83%;
+      text-align: left;
+      font-weight: 400;
+    }
+    .card-desc li {
+        margin-left: 20px;
+    }
+    .card-desc1 {
+      color: #192040;
+      font-size: 14px;
+      margin-top: 20px;
+      line-height: 150%;
+      width: 83%;
+      text-align: left;
+      font-weight: 400;
+    }
+    .accept-button {
+      background: #5B78FD;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 100%;
+      border-radius: 8px;
+      padding: 20px 40px 20px 40px;
+      margin: 0 0 18px 0;
+      margin-bottom: 40px;
+      width: 140px;
+      text-align: center;
+      border: none;
+    }
+    .info-text {
+      color: #192040;
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-weight: 400;
+      line-height: 150%;
+    }
+    .support {
+      font-size: 16px;
+      color: #565C7B;
+      line-height: 150%;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .support a {
+      color: #5B78FD;
+      text-decoration: none;
+    }
+    .socials {
+      margin: 24px 0 0 0;
+      text-align: center;
+    }
+    .socials a {
+      display: inline-block;
+      margin: 0 8px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      transition: 0.2s;
+      vertical-align: middle;
+    }
+  
+    .socials a svg {
+      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+    }
+    .footer {
+      color: #565C7B;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 150%;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .team-name {
+     color: #192040;
+      font-size: 14px;
+      margin-top: 30px;
+      font-weight: 400;
+      line-height: 150%;
+      display: inline-block;
+    }
+    @media (max-width: 480px) {
+      .outer-card { padding: 0 2vw 24px 2vw; }
+      .white-card { padding: 18px 4vw 18px 4vw; }
+      .otp-box { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="outer-card">
+    <!-- Logo/Header -->
+    <div class="logo">
+      <img src="tessa.png" alt="Tessa Logo" class="logo-image">
+    </div>
+    <!-- Main White Card -->
+    <div class="white-card">
+      <div class="card-title">Support Admin: Setup Your account</div>
+      <div class="card-desc">
+        Hi {First+Last name}
+      </div>
+      <div class="card-desc">
+        [Organization Name] has added you as a support agent on Tessa. Here are your login details:
+        <li>Email: [Agent Email]</li>
+        <li>Password: [Password]</li>
+        <div class="card-desc1">
+            Click below to log in and get started. You can reset your password at any time in Settings.
+        </div>
+      </div>
+      <div class="accept-button">Accept Invite</div>
+      <div class="info-text">
+        Questions? Just reply to this email
+      </div>
+      <div class="team-name">
+        Welcome aboard! <br >
+        Tessa Team
+      </div>
+    </div>
+    <!-- Socials OUTSIDE the white card but INSIDE the #F0F4FF card -->
+    <div class="socials">
+      <a href="#">
+        <img src="x.png" alt="X" class="social-icon">
+      </a>
+      <a href="#" >
+      <img src="facebook.png" alt="Facebook" class="social-icon">
+      </a>
+      <a href="#">
+      <img src="in.png" alt="LinkedIn" class="social-icon">
+      </a>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      Copyright © Team Tessa 2025. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

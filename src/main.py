@@ -3,7 +3,7 @@ import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from db.database import create_tables
 from utils.config import settings
-from authentication import token
+from authentication import token, auth
 from admin import admin_route
 from routers import user
 
@@ -14,6 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(token.router)
+app.include_router(auth.router, prefix=settings.API_PREFIX)
 app.include_router(user.router, prefix=settings.API_PREFIX)
 app.include_router(admin_route.router, prefix=settings.API_PREFIX)
 
