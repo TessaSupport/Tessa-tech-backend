@@ -7,9 +7,7 @@ services:
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
-    startCommand: |
-      alembic upgrade head && \
-      uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 2
 
     envVars:
       - key: ENV
@@ -18,6 +16,8 @@ services:
         fromDatabase:
           name: tessa-db-staging
           property: connectionString
+
+    preDeployCommand: alembic upgrade head
 
 databases:
   - name: tessa-db-staging
