@@ -2,7 +2,7 @@ from sqlalchemy.sql.sqltypes import Integer, String, DateTime
 from sqlalchemy import Enum as sqlEnum, Column, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from db.database import Base
+from db.baseClass import Base
 from .status import SenderType
 
 class Message(Base):

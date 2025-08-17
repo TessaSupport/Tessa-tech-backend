@@ -1,7 +1,7 @@
 from sqlalchemy.sql.sqltypes import String, Integer, DateTime, Text
 from sqlalchemy import Column, ForeignKey, Enum as sqlEnum
 from sqlalchemy.orm import relationship
-from db.database import Base
+from db.baseClass import Base
 from sqlalchemy.sql import func
 from .status import TicketStatus
 

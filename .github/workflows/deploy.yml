@@ -1,0 +1,42 @@
+name: Deploy FastAPI App to DigitalOcean Droplet
+
+on:
+  push:
+    branches:
+      - dev
+      - staging
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'dev' && 'development' || github.ref_name == 'staging' && 'staging' || github.ref_name == 'main' && 'production' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.DO_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create environment file
+        run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env.${{ secrets.ENV }}
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env.${{ secrets.ENV }}
+          echo "ALGORITHM=${{ secrets.ALGORITHM }}" >> .env.${{ secrets.ENV }}
+          echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .env.${{ secrets.ENV }}
+
+      - name: Deploy to Droplet
+        run: |
+          ssh ${{ secrets.DO_USER }}@${{ secrets.DO_HOST }} << 'EOF'
+          cd /path/to/your/app
+          git pull origin ${{ github.ref_name }}
+          source /path/to/venv/bin/activate
+          pip install -r requirements.txt
+          cp /path/to/.env.${{ secrets.ENV }} .env
+          systemctl restart your-fastapi-service
+          EOF
