@@ -9,7 +9,7 @@ services:
       pip install -r requirements.txt
     startCommand: |
       alembic upgrade head && \
-      uvicorn src.main:app --host 0.0.0.0 --port $PORT --app-dir src
+      uvicorn src.main:app --host 0.0.0.0 --port $PORT
 
     envVars:
       - key: ENV
