@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Verify Email Address</title>
+  <title>Welcome to Tessa</title>
   <link rel="stylesheet" href="https://geists.vercel.app/font.css">
   <style>
+    /* Add box-sizing */
+    * {
+        box-sizing: border-box;
+    }
+    
     body {
       margin: 0;
       padding: 0;
@@ -39,7 +44,8 @@
       margin: 0 auto 0 auto;
       text-align: left;
       max-width: 550px;
-      height: 625px;
+      min-height: 625px;
+      height: auto;
     }
     .card-title {
       font-size: 20px;
@@ -145,35 +151,51 @@
     }
     @media (max-width: 480px) {
       .outer-card { padding: 0 2vw 24px 2vw; }
-      .white-card { padding: 18px 4vw 18px 4vw; }
-      .otp-box { width: 100%; }
+      .white-card { padding: 18px 15px; }
+      .card-desc, .card-desc1 {
+            width: 100%;
+            padding: 0 10px;
+        }
     }
   </style>
 </head>
 <body>
+  <!--[if mso]>
+<table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" align="center">
+<tr>
+<td>
+<![endif]-->
   <div class="outer-card">
     <!-- Logo/Header -->
     <div class="logo">
-      <img src="tessa.png" alt="Tessa Logo" class="logo-image">
+      <img src="{{ asset_urls.logo }}" alt="Tessa Logo" class="logo-image">
     </div>
     <!-- Main White Card -->
     <div class="white-card">
       <div class="card-title">Welcome to Tessa</div>
       <div class="card-desc">
-        Hi {Organization Name}
+        Hi {{ organization_name }}
       </div>
       <div class="card-desc">
         Congratulations on creating your Tessa account! We’re thrilled you’ve taken the first step toward transforming your customer support into a proactive, AI-powered machine.
         <div class="card-desc1">
-Tessa isn’t your average chatbot. She’s an autonomous AI that learns your brand voice by ingesting every details given her through the knowledge base so every reply feels like it came directly from your team.
-<li>In just a few minutes, Tessa will:</li>
-<li>Ingest your company’s tone and FAQs</li>
-<li>Connect (without dev work!) to your existing support tool</li>
-<li>Start resolving common tickets and triaging the rest to agents</li>
-Log in now to see Tessa in action. While she handles routine inquiries around the clock, you can focus on strategic growth.
-        </div>
+    Tessa isn't your average chatbot. She's an autonomous AI that learns your brand voice by ingesting every detail given to her through the knowledge base so every reply feels like it came directly from your team.
+    
+    <ul style="margin-top: 15px; padding-left: 20px;">
+        <li>In just a few minutes, Tessa will:</li>
+        <li>Ingest your company's tone and FAQs</li>
+        <li>Connect (without dev work!) to your existing support tool</li>
+        <li>Start resolving common tickets and triaging the rest to agents</li>
+    </ul>
+    
+    <p style="margin-top: 15px;">
+        Log in now to see Tessa in action. While she handles routine inquiries around the clock, you can focus on strategic growth.
+    </p>
+</div>
       </div>
-      <div class="accept-button">Sign in to dashboard</div>
+      <a href="{{ dashboard_url }}" class="accept-button" style="display: inline-block; text-decoration: none;">
+    Sign in to dashboard
+</a>
       <div class="info-text">
         If you ever need help, our support team is ready to jump in.
       </div>
@@ -184,14 +206,14 @@ Log in now to see Tessa in action. While she handles routine inquiries around th
     </div>
     <!-- Socials OUTSIDE the white card but INSIDE the #F0F4FF card -->
     <div class="socials">
-      <a href="#">
-        <img src="x.png" alt="X" class="social-icon">
+      <a href="{{ social_links.twitter }}">
+        <img src="{{ asset_urls.twitter_icon }}" alt="X" class="social-icon">
       </a>
-      <a href="#" >
-      <img src="facebook.png" alt="Facebook" class="social-icon">
+      <a href="{{ social_links.facebook }}">
+        <img src="{{ asset_urls.facebook_icon }}" alt="Facebook" class="social-icon">
       </a>
-      <a href="#">
-      <img src="in.png" alt="LinkedIn" class="social-icon">
+      <a href="{{ social_links.linkedin }}">
+        <img src="{{ asset_urls.linkedin_icon }}" alt="LinkedIn" class="social-icon">
       </a>
     </div>
     <!-- Footer -->
@@ -199,5 +221,10 @@ Log in now to see Tessa in action. While she handles routine inquiries around th
       Copyright © Team Tessa 2025. All rights reserved.
     </div>
   </div>
+  <!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->
 </body>
 </html>

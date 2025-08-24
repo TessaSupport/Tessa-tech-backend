@@ -160,17 +160,21 @@
     <div class="white-card">
       <div class="card-title">Support Admin: Setup Your account</div>
       <div class="card-desc">
-        Hi {First+Last name}
+        Hi {{ agent_name }}
       </div>
       <div class="card-desc">
-        [Organization Name] has added you as a support agent on Tessa. Here are your login details:
-        <li>Email: [Agent Email]</li>
-        <li>Password: [Password]</li>
+        {{ organization_name }} has added you as a support agent on Tessa. Here are your login details:
+        <ul style="margin-top: 10px;">
+            <li>Email: {{ agent_email }}</li>
+            <li>Password: {{ initial_password }}</li>
+        </ul>
         <div class="card-desc1">
             Click below to log in and get started. You can reset your password at any time in Settings.
         </div>
       </div>
-      <div class="accept-button">Accept Invite</div>
+      <a href="{{ invite_link }}" class="accept-button" style="display: inline-block; text-decoration: none;">
+          Accept Invite
+      </a>
       <div class="info-text">
         Questions? Just reply to this email
       </div>
@@ -181,15 +185,15 @@
     </div>
     <!-- Socials OUTSIDE the white card but INSIDE the #F0F4FF card -->
     <div class="socials">
-      <a href="#">
-        <img src="x.png" alt="X" class="social-icon">
-      </a>
-      <a href="#" >
-      <img src="facebook.png" alt="Facebook" class="social-icon">
-      </a>
-      <a href="#">
-      <img src="in.png" alt="LinkedIn" class="social-icon">
-      </a>
+        <a href="{{ social_links.twitter }}">
+            <img src="{{ asset_urls.twitter_icon }}" alt="X" class="social-icon">
+        </a>
+        <a href="{{ social_links.facebook }}" >
+            <img src="{{ asset_urls.facebook_icon }}" alt="Facebook" class="social-icon">
+        </a>
+        <a href="{{ social_links.linkedin }}">
+            <img src="{{ asset_urls.linkedin_icon }}" alt="LinkedIn" class="social-icon">
+        </a>
     </div>
     <!-- Footer -->
     <div class="footer">
