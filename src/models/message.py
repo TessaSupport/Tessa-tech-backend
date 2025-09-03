@@ -3,7 +3,7 @@ from sqlalchemy import Enum as sqlEnum, Column, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from db.baseClass import Base
-from .status import SenderType
+from schemas.status import SenderType
 
 class Message(Base):
     __tablename__ = "messages"

@@ -3,7 +3,7 @@ from sqlalchemy import Column, ForeignKey, Enum as sqlEnum
 from sqlalchemy.orm import relationship
 from db.baseClass import Base
 from sqlalchemy.sql import func
-from .status import TicketStatus
+from schemas.status import TicketStatus, TicketPriority, SenderType
 
 class Ticket(Base):
     __tablename__ = 'tickets'
@@ -12,7 +12,9 @@ class Ticket(Base):
     title = Column(String(100), nullable=False)
     description = Column(Text, nullable=False)
     status = Column(sqlEnum(TicketStatus, name='status_enum'), default=TicketStatus.OPEN, nullable=False)
+    priority = Column(sqlEnum(TicketPriority, name="priority_enum"), default=TicketPriority.MEDIUM, nullable=False)
     created_at = Column(DateTime, default=func.now(), nullable=False)
+    assigned_to = Column(sqlEnum(SenderType, name='sender_enum'), nullable=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     user = relationship("User", back_populates="tickets")

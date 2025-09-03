@@ -15,8 +15,7 @@ def get_token(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depe
     user = db.query(User).filter(User.username == request.username).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incorrect credentials")
-    
-    # FIXED: Correct parameter order - plain_password first, then hashed_password
+
     if not Hash.verify_password(request.password, user.password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incorrect credentials")
     

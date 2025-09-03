@@ -26,7 +26,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./terra.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tessa.db")
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 # other values from the config, defined by the needs of env.py,

@@ -18,7 +18,6 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
     if not user or not Hash.verify_password(request.password, user.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     
-    # Create token with consistent data structure
     token_data = {
         "sub": user.username,
         "role": user.role,
@@ -31,8 +30,3 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
         "token_type": "bearer",
         "user": UserPublic.model_validate(user)
     }
-
-@router.post("/logout")
-def logout(current_user: User = Depends(get_current_user)):
-    # Optional: store token in blacklist DB/Redis for true server-side logout
-    return {"message": "Logged out successfully"}

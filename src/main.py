@@ -5,17 +5,18 @@ from db.database import create_tables
 from utils.config import settings
 from authentication import token, auth
 from admin import admin_route
-from routers import user
+from routers import user, ticket
 
 app = FastAPI(
     title="Tessa Customer Support AI Agent API",
-    description="This is a Fastapi backend for the Tessa application. All Rights Reserved.",
+    description="This is a FastAPI Backend for the Tessa Application. All Rights Reserved.",
     debug=settings.DEBUG
 )
 
 app.include_router(token.router)
 app.include_router(auth.router, prefix=settings.API_PREFIX)
 app.include_router(user.router, prefix=settings.API_PREFIX)
+app.include_router(ticket.router, prefix=settings.API_PREFIX)
 app.include_router(admin_route.router, prefix=settings.API_PREFIX)
 
 app.add_middleware(

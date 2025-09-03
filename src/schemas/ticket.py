@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field
-from enum import Enum
 from datetime import datetime
-from .status import TicketStatus  # Import from status module
+from .status import TicketStatus
 
 class TicketBase(BaseModel):
     title: str = Field(..., max_length=100)
@@ -15,16 +14,16 @@ class TicketCreate(TicketBase):
 class TicketResponse(BaseModel):
     id: int
     title: str
-    description: str  # Add missing field
+    description: str
     status: TicketStatus
     created_at: datetime
-    user_id: int  # Add missing field
+    user_id: int
     
     class Config:
         from_attributes = True
 
 class TicketInUser(BaseModel):
-    id: int  # Add missing field
+    id: int
     title: str
     status: TicketStatus
     

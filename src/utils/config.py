@@ -12,7 +12,7 @@ load_dotenv(env_path)
 
 class Settings(BaseSettings):
     ENV: str = ENV
-    DATABASE_URL: str = "sqlite:///./terra.db"
+    DATABASE_URL: str = "sqlite:///./tessa.db"
     API_PREFIX: str = "/api"
     DEBUG: bool = False
     ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173"
@@ -21,15 +21,9 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379/0"
     
     # Email settings - make optional for development
-    SMTP_SERVER: Optional[str] = "smtp.gmail.com"
-    SMTP_PORT: Optional[int] = 587
-    SMTP_USERNAME: Optional[str] = None
-    SMTP_PASSWORD: Optional[str] = None
-    EMAIL_FROM: Optional[str] = "no-reply@localhost"
+    POSTMARK_API_TOKEN: Optional[str] = None
+    DEFAULT_FROM_EMAIL: Optional[str] = None
 
-    # Gmail settings - make optional for development
-    GMAIL_USERNAME: Optional[str] = None
-    GMAIL_APP_PASSWORD: Optional[str] = None
 
     @field_validator("ALLOWED_ORIGINS")
     def parse_allowed_origins(cls, v: str) -> List[str]:
